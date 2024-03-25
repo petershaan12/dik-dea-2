@@ -13,6 +13,9 @@ const config: Config = {
         secondary: "#f5f8fe",
         dark: "#171b20",
       },
+      backgroundImage: {
+        "logo-transparent": "url('/Logo_transparent.png')",
+      },
     },
   },
   plugins: [],

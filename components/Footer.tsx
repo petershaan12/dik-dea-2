@@ -1,10 +1,10 @@
-import React from "react";
-
 const Footer = () => {
   return (
-    <p className="text-center text-gray-500 text-xs py-12">
-      &copy; 2024 DIK DEA. All rights reserved.
-    </p>
+    <footer className="py-10">
+      <div className="max-w-[1500px] mx-auto w-[90%] text-center">
+        <span>Copyright © 2024 - All right reserved by DIK DEA</span>
+      </div>
+    </footer>
   );
 };
 
