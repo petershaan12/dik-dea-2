@@ -12,7 +12,7 @@ const Hero = () => {
     return "";
   }
   return (
-    <section className="relative w-full min-h-[500px] flex items-center justify-center text-center py-32 -mt-8">
+    <section className="relative w-full h-screen flex items-center justify-center text-center py-32 -mt-32 md:-mt-8">
       <div className="px-4 md:px-6 max-w-[1500px] mx-auto w-[90%]">
         <div className="space-y-2">
           {isSignedIn ? (

@@ -18,10 +18,10 @@ const NavLogin = ({ user, dir }: any) => {
       </Link>
       <Link href={"/profil"} className="hidden md:block">
         <span className="hover:underline cursor-pointer">
-          {user.firstName} 👋
+          {user?.firstName} 👋
         </span>
       </Link>
-      <UserButton />
+      <UserButton afterSignOutUrl="/" />
     </div>
   );
 };

@@ -7,7 +7,7 @@ const page = async () => {
   const tesScore = currentUser?.data?.tesResults?.[0]?.tesScore || 0;
 
   return (
-    <section className="relative w-full min-h-[500px] flex items-center justify-center py-32 -mt-8">
+    <section className="relative w-full min-h-[500px] flex items-center justify-center py-32 -mt-8 bg-logo-transparent md:bg-[length:300px_300px] bg-[length:100px_100px] bg-no-repeat bg-[bottom_right_3rem]">
       <div className="px-4 md:px-6 w-6/12">
         <div className=" mb-10 text-2xl flex justify-center items-center gap-5">
           <Image

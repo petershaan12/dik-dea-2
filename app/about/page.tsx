@@ -4,7 +4,7 @@ import { AiFillInstagram, AiFillMail, AiFillYoutube } from "react-icons/ai";
 
 const page = () => {
   return (
-    <section className="relative h-screen  mx-auto md:w-[80%] flex items-center text-left bg-logo-transparent md:bg-[length:300px_300px] bg-[length:100px_100px] bg-no-repeat bg-[bottom_right_3rem]">
+    <section className="relative h-screen pt-24 mb-24 md:mt-0 lg:-mt-44 lg:-mb-5 mx-auto md:w-[80%] flex items-center text-left bg-logo-transparent lg:bg-[length:300px_300px] bg-[length:100px_100px] bg-no-repeat bg-[bottom_right_3rem]">
       <div className=" md:px-6 w-full md:w-[80%] px-12">
         <h1 className=" text-2xl md:text-5xl font-bold text-dark">
           DIKDEA: Instrumen Deteksi Dini Diabetes Mellitus pada Remaja
