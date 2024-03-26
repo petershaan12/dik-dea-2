@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import StatCard from "./StatCard";
+import { toast } from "react-hot-toast";
 
 interface Answer {
   option: string;
@@ -42,7 +43,7 @@ const Quiz = ({ questions, userId }: QuizProps) => {
       setActiveQuestion((prev) => prev + 1);
     } else {
       setShowResults(true);
-      fetch("/api/quizResults", {
+      fetch("/api/tesResults", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -54,15 +55,18 @@ const Quiz = ({ questions, userId }: QuizProps) => {
       })
         .then((response) => {
           if (!response.ok) {
+            toast.error("Internet Error");
             throw new Error("Network response was not working fam");
           }
           return response.json();
         })
         .then((data) => {
-          console.log("Tes results saved successfully:", data);
+          toast.success("Tes Selesai Disimpan");
+          console.log(data);
         })
         .catch((error) => {
-          console.error("Error saving quiz results:", error);
+          toast.error("Tes Gagal disimpan");
+          console.log(error);
         });
     }
     setChecked(false);
@@ -70,11 +74,11 @@ const Quiz = ({ questions, userId }: QuizProps) => {
   };
 
   return (
-    <div className="min-h-[500px]">
-      <div className="max-w-[1500px] mx-auto w-[90%] flex justify-center py-10 flex-col">
+    <div className="w-[80%] mx-auto -mt-24">
+      <div className="flex justify-center flex-col ">
         {!showResults ? (
           <>
-            <div className="flex justify-between mb-10 items-center">
+            <div className="flex justify-center mb-10 items-center">
               <div className="bg-primary text-white px-4 rounded-md py-1">
                 <h2>
                   Question: {activeQuestion + 1}
@@ -83,14 +87,16 @@ const Quiz = ({ questions, userId }: QuizProps) => {
               </div>
             </div>
 
-            <div>
-              <h3 className="mb-5 text-2xl font-bold">{question}</h3>
+            <div className="flex justify-center flex-col mx-auto">
+              <h3 className="mb-5 text-2xl font-bold text-center">
+                {question}
+              </h3>
               <ul>
                 {answers.map((answer: Answer, idx: number) => (
                   <li
                     key={idx}
                     onClick={() => onAnswerSelected(answer)}
-                    className={`cursor-pointer mb-5 py-3 rounded-md hover:bg-primary hover:text-white px-3 ${
+                    className={`cursor-pointer mb-5 py-3 border w-full border-black rounded-md hover:bg-primary hover:text-white px-3 ${
                       selectedAnswer === answer && "bg-primary text-white"
                     }`}
                   >
@@ -112,14 +118,14 @@ const Quiz = ({ questions, userId }: QuizProps) => {
         ) : (
           <div className="text-center">
             <h3 className="text-2xl uppercase mb-10">Results 📈</h3>
-            <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-10">
+            <div className="text-center">
               <StatCard title="Total Score" value={results.score} />
             </div>
             <button
               onClick={() => window.location.reload()}
               className="mt-10 font-bold uppercase"
             >
-              Restart Quiz
+              Ulang Cek Diabetes
             </button>
           </div>
         )}

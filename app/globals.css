@@ -7,3 +7,9 @@
         @apply flex-col;
     }
 }
+
+
+.image-container {
+  width: 138px; /* Set your desired width */
+  overflow: hidden;
+}

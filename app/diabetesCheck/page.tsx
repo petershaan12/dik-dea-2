@@ -20,9 +20,9 @@ const page = async () => {
   const user = await fetchUsers();
   const userId = user?.data.user.id;
   return (
-    <>
+    <main className="min-h-full">
       <Quiz questions={questions} userId={userId} />
-    </>
+    </main>
   );
 };
 

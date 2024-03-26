@@ -28,7 +28,7 @@ export const fetchUsers = async () => {
       });
     }
 
-    const quizResults = await prisma.tesResult.findMany({
+    const tesResults = await prisma.tesResult.findMany({
       where: {
         userId: mongoUser.id,
       },
@@ -37,7 +37,7 @@ export const fetchUsers = async () => {
     return {
       data: {
         user: mongoUser,
-        quizResults,
+        tesResults,
       },
     };
   } catch (error) {

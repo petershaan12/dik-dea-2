@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import { Epilogue } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
-import Home from "./page";
-import Footer from "@/components/Footer";
 import LayoutProvider from "@/providers/LayoutProvider";
+import { Toaster } from "react-hot-toast";
 
 const epilogue = Epilogue({ subsets: ["latin"] });
 
@@ -24,6 +23,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.png" sizes="any" />
         <body className={epilogue.className}>
           <LayoutProvider>{children}</LayoutProvider>
+          <Toaster position="top-center" />
         </body>
       </html>
     </ClerkProvider>

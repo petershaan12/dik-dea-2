@@ -1,13 +1,13 @@
 "use client";
-import { UserButton, useUser } from "@clerk/nextjs";
+import { useClerk, UserButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
 import UserMenu from "./UserMenu";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
   const { isLoaded, isSignedIn, user } = useUser();
 
-  // In case the user signs out while on the page.
   if (!isLoaded) {
     return "";
   }
@@ -15,7 +15,7 @@ const Navbar = () => {
   return (
     <div className="pt-7">
       <div className="max-w-[1500px] mx-auto w-[80%] flex justify-between items-center pb-5">
-        <Link href={"/"} className="flex gap-1 items-center">
+        <Link href={"/"}>
           <Image
             src="/Logo.png"
             width={138}
@@ -30,23 +30,22 @@ const Navbar = () => {
           <Link href={"/about"}>Tentang Kami</Link>
           {isSignedIn ? (
             <div className=" flex items-center gap-3 ">
-              {/* <UserMenu /> */}
-              <Link href={"/tes"}>
-                <span className=" border border-primary px-5 py-2 rounded-md text-primary">
+              <Link href={"/diabetesCheck"}>
+                <span className=" border border-primary px-5 py-2 rounded-md text-primary hover:text-white hover:bg-primary ">
                   CEK DIABETES
                 </span>
               </Link>
               <Link href={"/profil"}>
                 <span className="hover:underline cursor-pointer">
-                  {user.firstName} 👋
+                  {user.firstName}
                 </span>
               </Link>
-              <UserButton />
+              <UserButton afterSignOutUrl="/" />
             </div>
           ) : (
             <>
               <Link href={"/sign-in"}>
-                <span className=" border border-primary px-5 py-2 rounded-md text-primary">
+                <span className=" border border-primary px-5 py-2 rounded-md text-primary hover:text-white hover:bg-primary hover:border-none">
                   Sign In
                 </span>
               </Link>

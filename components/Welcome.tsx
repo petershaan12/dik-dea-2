@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import home from "@/public/homepage-1.png";
 
 const Welcome = () => {
   return (
@@ -15,9 +16,10 @@ const Welcome = () => {
       <div className="w-1/12"></div>
       <div className="w-auto ">
         <Image
-          src="/homepage-1.png"
+          src={home}
           width={657}
           height={800}
+          priority={true}
           alt="Hompage Image"
         />
       </div>

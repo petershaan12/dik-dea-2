@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <footer className="py-10">
-      <div className="max-w-[1500px] mx-auto w-[90%] text-center">
+      <div className="max-w-[1500px] mx-auto text-sm w-[90%] text-center">
         <span>Copyright © 2024 - All right reserved by DIK DEA</span>
       </div>
     </footer>
