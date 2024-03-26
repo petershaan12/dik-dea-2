@@ -84,13 +84,16 @@ const Navbar = () => {
               </Link>
               {isSignedIn ? (
                 <>
-                  <Link href={"/tes"} onClick={() => setOffcanvas(false)}>
+                  <Link
+                    href={"/diabetesCheck"}
+                    onClick={() => setOffcanvas(false)}
+                  >
                     <span className=" border border-primary px-5 py-2 rounded-md text-primary hover:bg-red-100  duration-200 transition ease-in-out">
                       CEK DIABETES
                     </span>
                   </Link>
                   <Link
-                    href={"/profile"}
+                    href={"/profil"}
                     className="hover:underline"
                     onClick={() => setOffcanvas(false)}
                   >

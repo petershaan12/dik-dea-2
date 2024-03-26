@@ -7,30 +7,28 @@ const page = async () => {
   const tesScore = currentUser?.data?.tesResults?.[0]?.tesScore || 0;
 
   return (
-    <section className="relative w-full min-h-[500px] flex items-center justify-center py-32 -mt-8 bg-logo-transparent md:bg-[length:300px_300px] bg-[length:100px_100px] bg-no-repeat bg-[bottom_right_3rem]">
-      <div className="px-4 md:px-6 w-6/12">
-        <div className=" mb-10 text-2xl flex justify-center items-center gap-5">
-          <Image
-            src={currentUser?.data?.user.profilePic || "/avatar.jpg"}
-            className="rounded-full  outline outline-3 outline-primary outline-offset-2"
-            width={200}
-            height={200}
-            priority={true}
-            alt="avatar"
-          />
-          <div className="block">
-            <h1 className="text-4xl font-bold tracking-tighter">
-              {currentUser?.data?.user.username || "Jono"}
-            </h1>
-            <div className="text-xl">
-              <p>Id: {currentUser?.data?.user.id}</p>
-              <p>Email: {currentUser?.data?.user.email}</p>
-            </div>
+    <section className="relative min-h-[500px] mx-auto flex flex-col items-center w-[80%]  md:justify-center pb-24 bg-logo-transparent md:bg-[length:300px_300px] bg-[length:100px_100px] bg-no-repeat bg-[bottom_right_1rem]">
+      <div className=" py-10 text-2xl md:flex justify-center items-center mx-auto gap-5">
+        <Image
+          src={currentUser?.data?.user.profilePic || "/avatar.jpg"}
+          className="rounded-full  outline outline-3 outline-primary outline-offset-2 mx-auto"
+          width={200}
+          height={200}
+          priority={true}
+          alt="avatar"
+        />
+        <div className="block">
+          <h1 className="text-4xl font-bold tracking-tighter mt-8">
+            {currentUser?.data?.user.username || "Jono"}
+          </h1>
+          <div className=" text-base md:text-xl text-center md:text-left">
+            <p>Id: {currentUser?.data?.user.id}</p>
+            <p>Email: {currentUser?.data?.user.email}</p>
           </div>
         </div>
-        <div className=" mx-auto justify-center">
-          <StatCard title="Total Points" value={tesScore} />
-        </div>
+      </div>
+      <div className="w-full md:w-[500px]">
+        <StatCard title="Total Points" value={tesScore} />
       </div>
     </section>
   );

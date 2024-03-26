@@ -1,7 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StatCard from "./StatCard";
 import { toast } from "react-hot-toast";
+import Image from "next/image";
+import { useNextSanityImage } from "next-sanity-image";
+import { client } from "@/sanity/lib/client";
 
 interface Answer {
   option: string;
@@ -11,6 +14,7 @@ interface Answer {
 interface Question {
   question: string;
   answers: Answer[];
+  image?: string;
 }
 
 interface QuizProps {
@@ -27,7 +31,12 @@ const Quiz = ({ questions, userId }: QuizProps) => {
     score: 0,
   });
 
-  const { question, answers } = questions[activeQuestion];
+  const { question, answers, image } = questions[activeQuestion];
+
+  useEffect(() => {
+    setChecked(false);
+    setSelectedAnswer(null);
+  }, [activeQuestion, image]);
 
   const onAnswerSelected = (answer: Answer) => {
     setChecked(true);
@@ -73,12 +82,14 @@ const Quiz = ({ questions, userId }: QuizProps) => {
     setSelectedAnswer(null);
   };
 
+  const imageProps = useNextSanityImage(client, image || "");
+
   return (
-    <div className="w-[80%] mx-auto -mt-24">
+    <>
       <div className="flex justify-center flex-col ">
         {!showResults ? (
           <>
-            <div className="flex justify-center mb-10 items-center">
+            <div className="flex justify-center my-10 items-center">
               <div className="bg-primary text-white px-4 rounded-md py-1">
                 <h2>
                   Question: {activeQuestion + 1}
@@ -88,6 +99,14 @@ const Quiz = ({ questions, userId }: QuizProps) => {
             </div>
 
             <div className="flex justify-center flex-col mx-auto">
+              {image && (
+                <Image
+                  {...imageProps}
+                  style={{ width: "80%", height: "auto" }}
+                  alt={`Image for question ${activeQuestion + 1}`}
+                  className="mb-5 mx-auto"
+                />
+              )}
               <h3 className="mb-5 text-2xl font-bold text-center">
                 {question}
               </h3>
@@ -107,11 +126,9 @@ const Quiz = ({ questions, userId }: QuizProps) => {
               <button
                 onClick={nextQuestion}
                 disabled={!checked}
-                className="font-bold"
+                className="font-bold py-8"
               >
-                {activeQuestion === questions.length - 1
-                  ? "Finish"
-                  : "Next Question →"}
+                {activeQuestion === questions.length - 1 ? "Finish" : "Next →"}
               </button>
             </div>
           </>
@@ -130,7 +147,7 @@ const Quiz = ({ questions, userId }: QuizProps) => {
           </div>
         )}
       </div>
-    </div>
+    </>
   );
 };
 
