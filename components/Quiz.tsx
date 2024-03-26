@@ -59,7 +59,7 @@ const Quiz = ({ questions, userId }: QuizProps) => {
           return response.json();
         })
         .then((data) => {
-          console.log("Quiz results saved successfully:", data);
+          console.log("Tes results saved successfully:", data);
         })
         .catch((error) => {
           console.error("Error saving quiz results:", error);

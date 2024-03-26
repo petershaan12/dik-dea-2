@@ -22,7 +22,7 @@ model TesResult {
   id             String   @id @default(cuid()) @map("_id")
   user           User     @relation(fields: [userId], references: [id])
   userId         String
-  tesScore      Int
+  tesScore       Int
   createdAt      DateTime @default(now())
 }
 

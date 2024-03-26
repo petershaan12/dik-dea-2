@@ -11,7 +11,6 @@ import Welcome from "@/components/Welcome";
 function LayoutProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isPublicRoute = ["sign-in", "sign-up"].includes(pathname.split("/")[0]);
-  console.log(isPublicRoute);
 
   const getContent = () => {
     if (isPublicRoute) return <Welcome />;

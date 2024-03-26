@@ -23,18 +23,25 @@ const Navbar = () => {
             priority={true}
             alt="DIK DEA logo"
           />
-          {/* <MdQuiz className="text-primary" /> */}
         </Link>
 
         <div className="md:block hidden text-nowrap "></div>
         <div className="flex items-center gap-3 justify-end">
           <Link href={"/about"}>Tentang Kami</Link>
-          {/* <UserMenu /> */}
-
           {isSignedIn ? (
-            <div className="hover:underline">
-              <span>{user.firstName} 👋</span>
-              <UserMenu />
+            <div className=" flex items-center gap-3 ">
+              {/* <UserMenu /> */}
+              <Link href={"/tes"}>
+                <span className=" border border-primary px-5 py-2 rounded-md text-primary">
+                  CEK DIABETES
+                </span>
+              </Link>
+              <Link href={"/profil"}>
+                <span className="hover:underline cursor-pointer">
+                  {user.firstName} 👋
+                </span>
+              </Link>
+              <UserButton />
             </div>
           ) : (
             <>
