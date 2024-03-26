@@ -12,9 +12,9 @@ const Hero = () => {
     return "";
   }
   return (
-    <section className="relative w-full h-screen flex items-center justify-center text-center py-32 -mt-32 md:-mt-8">
-      <div className="px-4 md:px-6 max-w-[1500px] mx-auto w-[90%]">
-        <div className="space-y-2">
+    <section className="w-full text-center">
+      <div className="px-4 md:px-6 max-w-[1500px] mx-auto w-[90%] ">
+        <div className="space-y-2 pt-12 md:pt-20">
           {isSignedIn ? (
             <h1 className="text-2xl  sm:text-5xl md:text-6xl lg:text-6xl/none font-bold tracking-tighter text-dark">
               Welcome <span className="text-primary">{user.firstName}</span> 👋
@@ -46,7 +46,7 @@ const Hero = () => {
         <div className="mt-6">
           <Link
             href={"/diabetesCheck"}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-8 py-3 text-sm font-medium text-gray-50 shadow transition-colors duration-500 hover:bg-primary/80"
+            className="inline-flex items-center justify-center rounded-md bg-primary hover:bg-red-700 px-8 py-3 text-sm font-medium text-gray-50 shadow transition-colors duration-500 hover:bg-primary/80"
           >
             Cek Sekarang
           </Link>
@@ -60,7 +60,7 @@ const Hero = () => {
             alt="Hompage Image"
           />
         </div>
-        <div className="text-2xl flex justify-center gap-10 text-gray-800 -mb-36">
+        <div className="text-2xl flex justify-center gap-10 text-gray-800 ">
           <a href="https://www.youtube.com/@petershaan_" target={"_blank"}>
             <AiFillYoutube className="mouse-clicked" />
           </a>

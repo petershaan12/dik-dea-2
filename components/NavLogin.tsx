@@ -12,7 +12,7 @@ const NavLogin = ({ user, dir }: any) => {
   return (
     <div className={classNames("flex items-center gap-3 ", pickedDir)}>
       <Link href={"/tes"} className="hidden md:block">
-        <span className=" border border-primary px-5 py-2 rounded-md text-primary">
+        <span className=" border border-primary px-5 py-2 rounded-md text-primary hover:bg-red-100   duration-200 transition ease-in-out">
           CEK DIABETES
         </span>
       </Link>

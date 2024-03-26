@@ -4,6 +4,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 import LayoutProvider from "@/providers/LayoutProvider";
 import { Toaster } from "react-hot-toast";
+import classNames from "classnames";
 
 const epilogue = Epilogue({ subsets: ["latin"] });
 
@@ -21,7 +22,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <link rel="icon" href="/favicon.png" sizes="any" />
-        <body className={epilogue.className}>
+        <body className={classNames("bg-secondary", epilogue.className)}>
           <LayoutProvider>{children}</LayoutProvider>
           <Toaster position="top-center" />
         </body>

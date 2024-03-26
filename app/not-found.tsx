@@ -3,8 +3,8 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <main className="flex h-screen bg-logo-transparent md:bg-[length:300px_300px] bg-[length:100px_100px] bg-no-repeat bg-[bottom_right_3rem] justify-center items-center   ">
-      <section className=" container mx-auto px-12">
+    <section className=" mx-auto w-[80%]  flex items-center text-left bg-logo-transparent lg:bg-[length:300px_300px] bg-[length:100px_100px] bg-no-repeat bg-[bottom_right_1rem]">
+      <div className="py-48 w-full text-center ">
         <p className="text-lg">
           😭 We could not find the page you were looking for{" "}
         </p>
@@ -14,7 +14,7 @@ export default function NotFound() {
             Dashboard
           </Link>
         </p>
-      </section>
-    </main>
+      </div>
+    </section>
   );
 }
