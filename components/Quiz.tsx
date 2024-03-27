@@ -102,7 +102,7 @@ const Quiz = ({ questions, userId }: QuizProps) => {
               {image && (
                 <Image
                   {...imageProps}
-                  style={{ width: "80%", height: "auto" }}
+                  style={{ width: "40%", height: "auto" }}
                   alt={`Image for question ${activeQuestion + 1}`}
                   className="mb-5 mx-auto"
                 />

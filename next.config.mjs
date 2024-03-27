@@ -3,10 +3,14 @@ const nextConfig = {
     reactStrictMode: false,
     images: {
         remotePatterns: [{
-            protocol: "https",
-            hostname: "img.clerk.com",
-            hostname: "cdn.sanity.io"
-        }]
+                protocol: "https",
+                hostname: "img.clerk.com",
+            },
+            {
+                protocol: "https",
+                hostname: "cdn.sanity.io",
+            }
+        ]
     }
 };
 

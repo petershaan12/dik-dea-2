@@ -18,8 +18,8 @@ const page = async () => {
           alt="avatar"
         />
         <div className="block">
-          <h1 className="text-4xl font-bold tracking-tighter mt-8">
-            {currentUser?.data?.user.username || "Jono"}
+          <h1 className="text-4xl font-bold tracking-tighter mt-8 text-center">
+            {currentUser?.data?.user.username || "Halo"}
           </h1>
           <div className=" text-base md:text-xl text-center md:text-left">
             <p>Id: {currentUser?.data?.user.id}</p>
