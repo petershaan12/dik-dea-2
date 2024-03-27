@@ -1,8 +1,14 @@
-import Image from "next/image";
-import Link from "next/link";
 import Hero from "@/components/Hero";
+import Loader from "@/components/Loader";
+import { Suspense } from "react";
 
 const Home = () => {
-  return <Hero />;
+  return (
+    <>
+      <Suspense fallback={<Loader />}>
+        <Hero />
+      </Suspense>
+    </>
+  );
 };
 export default Home;

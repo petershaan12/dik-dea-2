@@ -36,7 +36,7 @@ const Navbar = () => {
 
         <div className="flex items-center gap-3 justify-end">
           <Link href={"/about"} className=" hidden md:block hover:underline">
-            Tentang Kami
+            Tentang
           </Link>
 
           {isSignedIn ? (
@@ -80,7 +80,7 @@ const Navbar = () => {
                 onClick={() => setOffcanvas(false)}
                 className="hover:underline"
               >
-                Tentang Kami
+                Tentang
               </Link>
               {isSignedIn ? (
                 <>

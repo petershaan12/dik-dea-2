@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { AiFillYoutube, AiFillInstagram, AiFillMail } from "react-icons/ai";
 import { TypeAnimation } from "react-type-animation";
-import { fetchUsers } from "@/app/(auth)/actions/fetchUsers";
 import { useUser } from "@clerk/nextjs";
 
 const Hero = () => {
@@ -31,7 +30,7 @@ const Hero = () => {
                 2500, // wait 1s before replacing "Mice" with "Hamsters"
                 "Besok ?",
                 2500,
-                "Kemarin ?",
+                "Sekarang ?",
                 2500,
               ]}
               wrapper="span"
@@ -61,13 +60,16 @@ const Hero = () => {
           />
         </div>
         <div className="text-2xl flex justify-center gap-10 text-gray-800 ">
-          <a href="https://www.youtube.com/@petershaan_" target={"_blank"}>
+          <a
+            href="https://www.youtube.com/results?search_query=Diabetes+melitius"
+            target={"_blank"}
+          >
             <AiFillYoutube className="mouse-clicked" />
           </a>
-          <a href="https://www.youtube.com/@petershaan_" target={"_blank"}>
+          <a href="mailto:dikdea@example.com" target={"_blank"}>
             <AiFillMail className="mouse-clicked" />
           </a>
-          <a href="https://www.instagram.com/petershaan_" target={"_blank"}>
+          <a href="https://www.instagram.com/dikdea" target={"_blank"}>
             <AiFillInstagram />
           </a>
         </div>
