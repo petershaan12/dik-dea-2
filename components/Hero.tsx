@@ -69,7 +69,7 @@ const Hero = () => {
           <a href="mailto:dikdea@example.com" target={"_blank"}>
             <AiFillMail className="mouse-clicked" />
           </a>
-          <a href="https://www.instagram.com/dikdea" target={"_blank"}>
+          <a href="https://www.instagram.com/dikdea " target={"_blank"}>
             <AiFillInstagram />
           </a>
         </div>
