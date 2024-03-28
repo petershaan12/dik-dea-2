@@ -47,7 +47,7 @@ const ProfilePage = () => {
   }, []);
 
   return (
-    <section className="w-[80%] container min-h-[500px] mx-auto flex flex-col items-center md:justify-center pb-24 bg-logo-transparent md:bg-[length:300px_300px] bg-[length:100px_100px] bg-no-repeat bg-[bottom_right_1rem]">
+    <section className="w-[80%] container min-h-[700px] mx-auto flex flex-col items-center md:justify-center pb-24 bg-logo-transparent md:bg-[length:300px_300px] bg-[length:100px_100px] bg-no-repeat bg-[bottom_right_1rem]">
       {loading ? (
         <Loader />
       ) : (

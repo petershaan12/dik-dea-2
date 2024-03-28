@@ -50,7 +50,7 @@ const Page = () => {
   };
 
   return (
-    <section className="relative mx-auto min-h-[500px] justify-center flex flex-col w-[80%]   bg-logo-transparent md:bg-[length:300px_300px] bg-[length:100px_100px] bg-no-repeat bg-[bottom_right_1rem]">
+    <section className="relative mx-auto min-h-[700px] justify-center flex flex-col w-[80%]   bg-logo-transparent md:bg-[length:300px_300px] bg-[length:100px_100px] bg-no-repeat bg-[bottom_right_1rem]">
       {status === "loading" && <Loader />}
       {status === "error" && <Error />}
       {status === "ready" && (
