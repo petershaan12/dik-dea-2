@@ -4,9 +4,9 @@ import { AiFillInstagram, AiFillMail, AiFillYoutube } from "react-icons/ai";
 
 const page = () => {
   return (
-    <section className=" mx-auto w-[80%] flex items-center text-left bg-logo-transparent lg:bg-[length:300px_300px] bg-[length:100px_100px] bg-no-repeat bg-[bottom_right_1rem]">
+    <section className="w-[80%] container min-h-[500px] mx-auto flex items-center bg-logo-transparent md:bg-[length:300px_300px] bg-[length:100px_100px] bg-no-repeat bg-[bottom_right_1rem] py-12">
       <Suspense fallback={<Loader />}>
-        <div className="py-12 md:py-20 w-full md:w-[80%] ">
+        <div className=" w-full md:w-[80%] ">
           <h1 className=" text-2xl md:text-5xl font-bold text-dark">
             DIKDEA: Instrumen Deteksi Dini Diabetes Mellitus pada Remaja
           </h1>
@@ -26,14 +26,17 @@ const page = () => {
           <div className="text-xl md:text-3xl md:flex gap-10 mt-12 ">
             <p>Kontak kami: </p>
             <div className="flex text-4xl gap-10 mt-5">
-              <a href="https://www.youtube.com/@petershaan_" target={"_blank"}>
+              <a
+                href="https://www.youtube.com/results?search_query=Diabetes+melitius"
+                target={"_blank"}
+              >
+                <AiFillYoutube className="mouse-clicked" />
+              </a>
+              <a href="mailto:dikdea@example.com" target={"_blank"}>
                 <AiFillMail className="mouse-clicked" />
               </a>
-              <a href="https://www.instagram.com/petershaan_" target={"_blank"}>
+              <a href="https://www.instagram.com/dikdea " target={"_blank"}>
                 <AiFillInstagram />
-              </a>
-              <a href="https://www.youtube.com/@petershaan_" target={"_blank"}>
-                <AiFillYoutube className="mouse-clicked" />
               </a>
             </div>
           </div>

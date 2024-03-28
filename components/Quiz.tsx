@@ -86,7 +86,7 @@ const Quiz = ({ questions, userId }: QuizProps) => {
 
   return (
     <>
-      <div className="flex justify-center flex-col ">
+      <div className="flex flex-col ">
         {!showResults ? (
           <>
             <div className="flex justify-center my-10 items-center">
@@ -107,9 +107,7 @@ const Quiz = ({ questions, userId }: QuizProps) => {
                   className="mb-5 mx-auto"
                 />
               )}
-              <h3 className="mb-5 text-2xl font-bold text-center">
-                {question}
-              </h3>
+              <h3 className="mb-5 mx-auto font-bold text-center">{question}</h3>
               <ul>
                 {answers.map((answer: Answer, idx: number) => (
                   <li

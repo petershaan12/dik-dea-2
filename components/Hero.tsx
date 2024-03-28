@@ -25,9 +25,8 @@ const Hero = () => {
             Siap Uji Diabetesmu{" "}
             <TypeAnimation
               sequence={[
-                // Same substring at the start will only be typed out once, initially
                 "Hari Ini ?",
-                2500, // wait 1s before replacing "Mice" with "Hamsters"
+                2500,
                 "Besok ?",
                 2500,
                 "Sekarang ?",
