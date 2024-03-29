@@ -25,7 +25,7 @@ interface UserData {
 
 const ProfilePage = () => {
   const [loading, setLoading] = useState(true);
-  const [currentUser, setCurrentUser] = useState<UserData | null>(null); // Update tipe state currentUser
+  const [currentUser, setCurrentUser] = useState<UserData | null>(null);
   const [tesScore, setTesScore] = useState(0);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const ProfilePage = () => {
   }, []);
 
   return (
-    <section className="w-[80%] container min-h-[700px] mx-auto flex flex-col items-center md:justify-center pb-24 bg-logo-transparent md:bg-[length:300px_300px] bg-[length:100px_100px] bg-no-repeat bg-[bottom_right_1rem]">
+    <section className="w-[80%] min-h-[500px] container relative md:flex block md:place-items-center justify-center mx-auto bg-logo py-5 pb-24 md:pb-0">
       {loading ? (
         <Loader />
       ) : (

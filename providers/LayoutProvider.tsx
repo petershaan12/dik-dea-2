@@ -20,7 +20,7 @@ function LayoutProvider({ children }: { children: React.ReactNode }) {
   const getCurrentUser = async () => {
     try {
       const response: any = await fetchUsers();
-      if (response.error) throw new Error(response.error.message);
+      if (response && response.error) throw new Error(response.error.message);
     } catch (error) {
       console.log(error);
     } finally {
@@ -33,11 +33,12 @@ function LayoutProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <div className="min-h-screen  bg-secondary flex flexCol justify-between">
+    <main className="flex min-h-screen flex-col justify-between">
       <Navbar />
+      {/* <p className="text-5xl">halo</p> */}
       {getContent()}
       <Footer />
-    </div>
+    </main>
   );
 }
 

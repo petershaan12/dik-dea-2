@@ -1,45 +1,59 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @layer styles {
     .flexCol {
         @apply flex-col;
     }
 }
 
-
-.image-container {
-  width: 138px; /* Set your desired width */
-  overflow: hidden;
+.bg-logo {
+    @media (min-width: 768px) {
+        background-size: 300px 300px;
+        background-image: url('/Logo_Transparent.png');
+        background-repeat: no-repeat;
+        background-position: bottom right 1rem;
+    }
+    background-size: 100px 100px;
+    background-image: url('/Logo_Transparent.png');
+    background-repeat: no-repeat;
+    background-position: bottom right 1rem;
 }
 
+.image-container {
+    width: 138px;
+    overflow: hidden;
+}
+
+.layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
 /* CREDIT: https://dev.to/afif/i-made-100-css-loaders-for-your-next-project-4eje */
+
 .loader {
-  width: 50px;
-  height: 24px;
-  background: radial-gradient(circle closest-side, #FD8087 90%, #0000) 0%
-      50%,
-    radial-gradient(circle closest-side, #FD8087 90%, #0000) 50% 50%,
-    radial-gradient(circle closest-side, #FD8087 90%, #0000) 100% 50%;
-  background-size: calc(100% / 3) 12px;
-  background-repeat: no-repeat;
-  animation: loader 1s infinite linear;
+    width: 50px;
+    height: 24px;
+    background: radial-gradient(circle closest-side, #FD8087 90%, #0000) 0% 50%, radial-gradient(circle closest-side, #FD8087 90%, #0000) 50% 50%, radial-gradient(circle closest-side, #FD8087 90%, #0000) 100% 50%;
+    background-size: calc(100% / 3) 12px;
+    background-repeat: no-repeat;
+    animation: loader 1s infinite linear;
 }
 
 @keyframes loader {
-  20% {
-    background-position: 0% 0%, 50% 50%, 100% 50%;
-  }
-  40% {
-    background-position: 0% 100%, 50% 0%, 100% 50%;
-  }
-  60% {
-    background-position: 0% 50%, 50% 100%, 100% 0%;
-  }
-  80% {
-    background-position: 0% 50%, 50% 50%, 100% 100%;
-  }
+    20% {
+        background-position: 0% 0%, 50% 50%, 100% 50%;
+    }
+    40% {
+        background-position: 0% 100%, 50% 0%, 100% 50%;
+    }
+    60% {
+        background-position: 0% 50%, 50% 100%, 100% 0%;
+    }
+    80% {
+        background-position: 0% 50%, 50% 50%, 100% 100%;
+    }
 }
-
-

@@ -6,6 +6,7 @@ import Loader from "@/components/Loader";
 import Ready from "@/components/Ready";
 import { client } from "@/sanity/lib/client";
 import { fetchUsers } from "../(auth)/actions/fetchUsers";
+import toast from "react-hot-toast";
 
 export const dynamic = "force-dynamic";
 
@@ -16,9 +17,7 @@ async function getData() {
     answers,
     image
   }`;
-
   const data = await client.fetch(query);
-  console.log(data);
   return data;
 }
 
@@ -39,6 +38,7 @@ const Page = () => {
         setStatus("ready");
       } catch (error) {
         console.error("Error fetching data:", error);
+        toast.error("Tes Gagal Dimuat");
         setStatus("error");
       }
     };
@@ -50,7 +50,7 @@ const Page = () => {
   };
 
   return (
-    <section className="relative mx-auto min-h-[700px] justify-center flex flex-col w-[80%]   bg-logo-transparent md:bg-[length:300px_300px] bg-[length:100px_100px] bg-no-repeat bg-[bottom_right_1rem]">
+    <section className="w-[80%] min-h-[500px] container relative flex items-center justify-center flex-col mx-auto bg-logo">
       {status === "loading" && <Loader />}
       {status === "error" && <Error />}
       {status === "ready" && (

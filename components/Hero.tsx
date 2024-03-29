@@ -12,7 +12,7 @@ const Hero = () => {
   }
   return (
     <section className="w-full text-center">
-      <div className="px-4 md:px-6 max-w-[1500px] mx-auto w-[90%] ">
+      <div className="px-4 md:px-6 mx-auto w-[90%] ">
         <div className="space-y-2 pt-12 md:pt-20">
           {isSignedIn ? (
             <h1 className="text-2xl  sm:text-5xl md:text-6xl lg:text-6xl/none font-bold tracking-tighter text-dark">

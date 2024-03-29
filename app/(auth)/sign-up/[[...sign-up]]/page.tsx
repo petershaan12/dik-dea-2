@@ -2,7 +2,7 @@ import { SignUp } from "@clerk/nextjs";
 
 export default function Page() {
   return (
-    <div className="flex  min-h-[500px] justify-center items-start ">
+    <div className="container relative mx-auto flex justify-center bg-logo  py-12">
       <SignUp
         appearance={{
           variables: {

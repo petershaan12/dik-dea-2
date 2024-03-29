@@ -24,6 +24,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.png" sizes="any" />
         <body className={classNames("bg-secondary", epilogue.className)}>
           <LayoutProvider>{children}</LayoutProvider>
+          {/* {children} */}
           <Toaster position="top-center" />
         </body>
       </html>

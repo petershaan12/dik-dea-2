@@ -4,7 +4,7 @@ import { AiFillInstagram, AiFillMail, AiFillYoutube } from "react-icons/ai";
 
 const page = () => {
   return (
-    <section className="w-[80%] container min-h-[700px] mx-auto flex items-center bg-logo-transparent md:bg-[length:300px_300px] bg-[length:100px_100px] bg-no-repeat bg-[bottom_right_1rem] py-12">
+    <section className="w-[80%] container relative flex place-items-center mx-auto bg-logo py-12">
       <Suspense fallback={<Loader />}>
         <div className=" w-full md:w-[80%] ">
           <h1 className=" text-2xl md:text-5xl font-bold text-dark">

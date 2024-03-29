@@ -2,7 +2,7 @@ const Ready = ({ numQuestions, handleClick }: any) => {
   return (
     <div className="w-full text-center ">
       <h2 className="text-xl  sm:text-5xl md:text-3xl font-bold tracking-tighter text-dark">
-        Apakah Sudah Siap? ☺️
+        Apakah Sudah Siap?
       </h2>
       <h3 className="mt-4 text-xl">
         ada {numQuestions} pertanyaan untuk menguji cek ini
