@@ -27,5 +27,10 @@ export default {
       title: "Image",
       type: "image", // Menambahkan field gambar
     },
+    {
+      name: "order",
+      title: "Order",
+      type: "number", // Menambahkan field gambar
+    },
   ],
 };

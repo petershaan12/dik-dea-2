@@ -6,31 +6,13 @@ export async function POST(req: NextRequest) {
   const { userId, tesScore } = body;
 
   try {
-    let existingUser = await prisma.user.findUnique({
+    const newUser = await prisma.user.update({
       where: { id: userId },
-      include: { tesResults: true },
+      data: {
+        tesResults: { create: { tesScore: tesScore } },
+      },
     });
-    if (
-      existingUser &&
-      existingUser.tesResults &&
-      existingUser.tesResults.length > 0
-    ) {
-      const updatedUserStats = await prisma.tesResult.update({
-        where: { id: existingUser.tesResults[0].id },
-        data: {
-          tesScore: existingUser.tesResults[0].tesScore + tesScore,
-        },
-      });
-      return NextResponse.json({ updatedUserStats });
-    } else {
-      const newUser = await prisma.user.update({
-        where: { id: userId },
-        data: {
-          tesResults: { create: { tesScore: tesScore } },
-        },
-      });
-      return NextResponse.json({ newUser });
-    }
+    return NextResponse.json({ newUser });
   } catch (error) {
     console.error(error);
     return;

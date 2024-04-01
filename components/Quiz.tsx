@@ -20,15 +20,16 @@ interface Question {
 interface QuizProps {
   questions: Question[];
   userId: string | undefined;
+  totalScore: number;
 }
 
-const Quiz = ({ questions, userId }: QuizProps) => {
+const Quiz = ({ questions, userId, totalScore }: QuizProps) => {
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<Answer | null>(null);
   const [checked, setChecked] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const [results, setResults] = useState({
-    score: 0,
+    score: totalScore,
   });
 
   const { question, answers, image } = questions[activeQuestion];
@@ -44,8 +45,11 @@ const Quiz = ({ questions, userId }: QuizProps) => {
   };
 
   const nextQuestion = () => {
+    const updatedScore =
+      results.score + (selectedAnswer ? selectedAnswer.value : 0);
     setResults((prev) => ({
-      score: prev.score + (selectedAnswer ? selectedAnswer.value : 0),
+      ...prev,
+      score: updatedScore,
     }));
 
     if (activeQuestion !== questions.length - 1) {
@@ -59,7 +63,7 @@ const Quiz = ({ questions, userId }: QuizProps) => {
         },
         body: JSON.stringify({
           userId: userId,
-          tesScore: results.score,
+          tesScore: updatedScore,
         }),
       })
         .then((response) => {

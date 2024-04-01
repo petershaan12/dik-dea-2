@@ -7,11 +7,12 @@ import Ready from "@/components/Ready";
 import { client } from "@/sanity/lib/client";
 import { fetchUsers } from "../(auth)/actions/fetchUsers";
 import toast from "react-hot-toast";
+import Datadiri from "@/components/Datadiri";
 
 export const dynamic = "force-dynamic";
 
 async function getData() {
-  const query = `*[_type == "questions"] | order(_createdAt asc)
+  const query = `*[_type == "questions"] | order(order asc)
   {
     question,
     answers,
@@ -24,6 +25,7 @@ async function getData() {
 const Page = () => {
   const [status, setStatus] = useState("loading");
   const [questions, setQuestions] = useState<any[]>([]);
+  const [score, setScore] = useState(0);
   const [userId, setUserId] = useState<string | null | undefined>(null);
 
   useEffect(() => {
@@ -46,6 +48,11 @@ const Page = () => {
   }, []);
 
   const handleClick = () => {
+    setStatus("form");
+  };
+
+  const handleFormSubmit = (totalScore: number) => {
+    setScore(totalScore);
     setStatus("active");
   };
 
@@ -56,8 +63,13 @@ const Page = () => {
       {status === "ready" && (
         <Ready numQuestions={questions.length} handleClick={handleClick} />
       )}
+      {status === "form" && <Datadiri handleFormSubmit={handleFormSubmit} />}
       {status === "active" && (
-        <Quiz questions={questions} userId={userId ?? "admin"} />
+        <Quiz
+          questions={questions}
+          userId={userId ?? "admin"}
+          totalScore={score}
+        />
       )}
     </section>
   );
