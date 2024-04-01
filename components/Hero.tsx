@@ -11,7 +11,7 @@ const Hero = () => {
     return "";
   }
   return (
-    <section className="w-full text-center">
+    <section className="w-full text-center ">
       <div className="px-4 md:px-6 mx-auto w-[90%] ">
         <div className="space-y-2 pt-12 md:pt-20">
           {isSignedIn ? (
