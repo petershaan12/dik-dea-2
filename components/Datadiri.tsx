@@ -130,8 +130,8 @@ const Datadiri: React.FC<DataDiriProps> = ({ handleFormSubmit }) => {
               <option value="Aboriginal">Aboriginal</option>
               <option value="Other non-white">Other non-white</option>
               <option value="Black">Black</option>
-              <option value="East asian">East asian (Indonesia)</option>
-              <option value="South asean">South asean</option>
+              <option value="East asian">East asian</option>
+              <option value="South asean">South asean (Indonesia)</option>
             </select>
           </label>
           <br />
