@@ -53,12 +53,12 @@ const ProfilePage = () => {
   }, []);
 
   return (
-    <section className="w-[80%]  min-h-[500px] container relative md:flex block md:place-items-center justify-center mx-auto bg-logo pb-0 md:pb-32 ">
+    <section className="w-[80%]  min-h-[500px] container relative md:flex block md:place-items-center justify-center mx-auto bg-logo ">
       {loading ? (
         <Loader />
       ) : (
         <>
-          <div className="md:flex flex-col md:px-24 px-0">
+          <div className="md:flex flex-col md:px-24 px-0  pb-0 md:pb-32">
             <div className="py-10 text-2xl mx-auto gap-5">
               <Image
                 src={currentUser?.data?.user.profilePic || "/avatar.jpg"}
