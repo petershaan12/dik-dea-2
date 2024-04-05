@@ -80,13 +80,13 @@ const ProfilePage = () => {
   };
 
   return (
-    <section className="w-[80%] min-h-[500px] container mx-auto relative md:flex lg:flex-row md:flex-col lg:place-items-center justify-center bg-logo ">
+    <section className="w-[80%]  min-h-[500px] container relative md:flex block md:place-items-center justify-center mx-auto bg-logo pb-0 md:pb-32 ">
       {loading ? (
         <Loader />
       ) : (
         <>
-          <div className="md:flex container flex-col px-0">
-            <div className="py-10 text-2xl mx-auto gap-8">
+          <div className="md:flex flex-col md:px-24 px-0">
+            <div className="py-10 text-2xl mx-auto gap-5">
               <Image
                 src={currentUser?.data?.user.profilePic || "/avatar.jpg"}
                 className="rounded-full outline outline-3 outline-primary outline-offset-2 mx-auto"
