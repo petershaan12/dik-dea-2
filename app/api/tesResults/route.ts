@@ -18,3 +18,20 @@ export async function POST(req: NextRequest) {
     return;
   }
 }
+
+export async function DELETE(req: NextRequest) {
+  const body = await req.json();
+  const { resultId } = body;
+
+  try {
+    // Hapus hasil tes dari database menggunakan Prisma
+    await prisma.tesResult.delete({
+      where: { id: resultId },
+    });
+
+    return NextResponse.json({ message: "Test result deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    return;
+  }
+}

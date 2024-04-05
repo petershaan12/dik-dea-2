@@ -1,10 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
-import StatCard from "./StatCard";
 import { toast } from "react-hot-toast";
 import Image from "next/image";
 import { useNextSanityImage } from "next-sanity-image";
 import { client } from "@/sanity/lib/client";
+import QuizResults from "./QuizResults";
 
 interface Answer {
   option: string;
@@ -86,6 +86,12 @@ const Quiz = ({ questions, userId, totalScore }: QuizProps) => {
     setSelectedAnswer(null);
   };
 
+  const prevQuestion = () => {
+    if (activeQuestion !== 0) {
+      setActiveQuestion((prev) => prev - 1);
+    }
+  };
+
   const imageProps = useNextSanityImage(client, image || "");
 
   return (
@@ -125,28 +131,47 @@ const Quiz = ({ questions, userId, totalScore }: QuizProps) => {
                   </li>
                 ))}
               </ul>
-              <button
-                onClick={nextQuestion}
-                disabled={!checked}
-                className="font-bold py-8"
-              >
-                {activeQuestion === questions.length - 1 ? "Finish" : "Next →"}
-              </button>
+              <div className="flex mx-auto gap-x-24 justify-between">
+                <button
+                  onClick={prevQuestion}
+                  disabled={activeQuestion === 0}
+                  className={`font-bold py-8 ${
+                    activeQuestion === 0 ? "cursor-not-allowed opacity-50" : ""
+                  }`}
+                >
+                  ← Back
+                </button>
+                <button
+                  onClick={nextQuestion}
+                  disabled={!checked}
+                  className={`font-bold py-8 ${
+                    !checked ? "cursor-not-allowed opacity-50" : ""
+                  }`}
+                >
+                  {activeQuestion === questions.length - 1
+                    ? "Finish"
+                    : "Next →"}
+                </button>
+              </div>
             </div>
           </>
         ) : (
-          <div className="text-center">
-            <h3 className="text-2xl uppercase mb-10">Results 📈</h3>
-            <div className="text-center">
-              <StatCard title="Total Score" value={results.score} />
+          <>
+            {" "}
+            <div className="text-center w-[500px] mt-20">
+              <h3 className="text-2xl uppercase mb-10">Results 📈</h3>
+              <QuizResults
+                title="Tes Hasil Kamu Adalah"
+                score={results.score}
+              />
+              <button
+                onClick={() => window.location.reload()}
+                className="mt-2 mb-6 font-bold uppercase"
+              >
+                Ulang Cek Diabetes
+              </button>
             </div>
-            <button
-              onClick={() => window.location.reload()}
-              className="mt-10 font-bold uppercase"
-            >
-              Ulang Cek Diabetes
-            </button>
-          </div>
+          </>
         )}
       </div>
     </>

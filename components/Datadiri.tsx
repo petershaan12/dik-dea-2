@@ -11,17 +11,54 @@ const Datadiri: React.FC<DataDiriProps> = ({ handleFormSubmit }) => {
   const [ethnicity, setEthnicity] = useState<string>("");
   const [weight, setWeight] = useState<string>("");
   const [height, setHeight] = useState<string>("");
+  const [bmi, setBMI] = useState<number>(0);
   const [waistCircumference, setWaistCircumference] = useState<string>("");
+  const [isDataComplete, setIsDataComplete] = useState<boolean>(false);
 
   const handleChange =
     (key: string) =>
     (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-      if (key === "gender") setGender(event.target.value);
-      else if (key === "ethnicity") setEthnicity(event.target.value);
-      else if (key === "weight") setWeight(event.target.value);
-      else if (key === "height") setHeight(event.target.value);
+      let newGender = gender;
+      let newEthnicity = ethnicity;
+      let newWeight = weight;
+      let newHeight = height;
+      let newWaistCircumference = waistCircumference;
+
+      if (key === "gender") newGender = event.target.value;
+      else if (key === "ethnicity") newEthnicity = event.target.value;
+      else if (key === "weight") newWeight = event.target.value;
+      else if (key === "height") newHeight = event.target.value;
       else if (key === "waistCircumference")
-        setWaistCircumference(event.target.value);
+        newWaistCircumference = event.target.value;
+
+      if (
+        newGender &&
+        newEthnicity &&
+        newWeight &&
+        newHeight &&
+        newWaistCircumference
+      ) {
+        setIsDataComplete(true);
+      } else {
+        setIsDataComplete(false);
+      }
+
+      setGender(newGender);
+      setEthnicity(newEthnicity);
+      setWeight(newWeight);
+      setHeight(newHeight);
+      setWaistCircumference(newWaistCircumference);
+
+      // Check BMI nya
+      const weightValue = parseFloat(newWeight);
+      const heightValue = parseFloat(newHeight);
+      const heightInMeters = heightValue / 100;
+      if (weightValue && heightInMeters && heightInMeters !== 0) {
+        const bmi = weightValue / (heightInMeters * heightInMeters);
+        setBMI(bmi);
+      } else {
+        setBMI(0);
+      }
     };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -60,7 +97,6 @@ const Datadiri: React.FC<DataDiriProps> = ({ handleFormSubmit }) => {
         ethnicityScore = 0;
     }
 
-    const bmi = parseFloat(weight) / (parseFloat(height) * parseFloat(height));
     if (bmi < 18.5) {
       weightScore = 1;
     } else if (bmi >= 18.5 && bmi <= 22.9) {
@@ -76,8 +112,6 @@ const Datadiri: React.FC<DataDiriProps> = ({ handleFormSubmit }) => {
     const totalScore = genderScore + ethnicityScore + weightScore;
 
     handleFormSubmit(totalScore);
-
-    console.log(totalScore);
   };
 
   return (
@@ -158,6 +192,20 @@ const Datadiri: React.FC<DataDiriProps> = ({ handleFormSubmit }) => {
               required
             />
           </label>
+          {bmi > 0 && (
+            <p className="text-center  font-bold">
+              BMI Anda:{" "}
+              <span className="text-primary">
+                {bmi.toFixed(1)},{bmi < 18.5 && <span> Kurus</span>}
+                {bmi >= 18.5 && bmi <= 22.9 && <span> Normal</span>}
+                {bmi >= 23 && bmi <= 24.9 && (
+                  <span> Kelebihan Berat Badan</span>
+                )}
+                {bmi >= 25 && bmi <= 29.7 && <span> Obesitas</span>}
+                {bmi >= 30 && <span> Obesitas II</span>}
+              </span>
+            </p>
+          )}
           <br />
           {gender === "lakilaki" && (
             <label>
@@ -192,7 +240,14 @@ const Datadiri: React.FC<DataDiriProps> = ({ handleFormSubmit }) => {
             </label>
           )}
           <br />
-          <button className="font-bold py-8">Next →</button>
+          <button
+            className={`font-bold py-8 ${
+              isDataComplete ? "" : "opacity-50 pointer-events-none"
+            }`}
+            disabled={!isDataComplete}
+          >
+            Next →
+          </button>
         </form>
       </div>
     </div>
