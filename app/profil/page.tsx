@@ -80,7 +80,7 @@ const ProfilePage = () => {
   };
 
   return (
-    <section className="w-[80%]  min-h-[500px] container relative md:flex block md:place-items-center justify-center mx-auto bg-logo">
+    <section className="w-[80%] min-h-[500px] container relative md:flex block md:place-items-center justify-center mx-auto bg-logo">
       {loading ? (
         <Loader />
       ) : (
