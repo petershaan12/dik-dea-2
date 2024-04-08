@@ -48,12 +48,16 @@ const Hero = () => {
           >
             Cek Sekarang
           </Link>
-          <Link
-            href={"/profil"}
-            className=" ml-2 inline-flex items-center justify-center rounded-md  border border-primary hover:bg-red-100  px-8 py-3 text-sm font-medium text-primary  shadow transition-colors duration-500 hover:bg-primary/80"
-          >
-            Lihat Hasil
-          </Link>
+          {isSignedIn ? (
+            <Link
+              href={"/profil"}
+              className=" ml-2 inline-flex items-center justify-center rounded-md  border border-primary hover:bg-red-100  px-8 py-3 text-sm font-medium text-primary  shadow transition-colors duration-500 hover:bg-primary/80"
+            >
+              Lihat Hasil
+            </Link>
+          ) : (
+            <></>
+          )}
         </div>
         <div className="mx-auto flex items-center justify-center py-12">
           <Image
