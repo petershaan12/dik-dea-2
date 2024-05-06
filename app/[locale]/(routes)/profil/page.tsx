@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { fetchUsers } from "../(auth)/actions/fetchUsers";
+import { fetchUsers } from "../../(auth)/(routes)/actions/fetchUsers";
 import Image from "next/image";
 import Loader from "@/components/Loader";
 import QuizResults from "@/components/QuizResults";
@@ -23,7 +23,7 @@ interface UserData {
   };
 }
 
-const ProfilePage = () => {
+const ProfilePage = ({ texts }: any) => {
   const [loading, setLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState<UserData | null>(null);
   const [averageTesScore, setAverageTesScore] = useState(0);
@@ -106,14 +106,15 @@ const ProfilePage = () => {
             </div>
             <div className="w-[70%] md:w-[500px] mx-auto">
               <QuizResults
-                title="Rata rata Hasil Kamu adalah"
+                title={texts.rata}
+                texts={texts}
                 score={averageTesScore}
               />
             </div>
           </div>
 
           <div className="mt-7 container px-12 ">
-            <h1 className="text-3xl font-bold text-center">Data Anda 📝</h1>
+            <h1 className="text-3xl font-bold text-center">{texts.data}</h1>
             <ul>
               {currentUser?.data?.tesResults?.map((result, index) => (
                 <li
@@ -127,14 +128,14 @@ const ProfilePage = () => {
                         <p className="font-bold">Score: {result.tesScore}</p>
                       </div>
                       <span>
-                        Created At:{" "}
+                        {texts.dibuat}
                         {new Date(result.createdAt).toLocaleString()}
                       </span>
                       <button
                         onClick={() => handleDeleteResult(result.id)}
                         className="text-red-500"
                       >
-                        Hapus
+                        {texts.hapus}
                       </button>
                     </div>
                   </div>

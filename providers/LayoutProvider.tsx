@@ -1,14 +1,20 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { fetchUsers } from "@/app/(auth)/actions/fetchUsers";
+import { fetchUsers } from "@/app/[locale]/(auth)/(routes)/actions/fetchUsers";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Welcome from "@/components/Welcome";
 
-function LayoutProvider({ children }: { children: React.ReactNode }) {
+function LayoutProvider({
+  texts,
+  children,
+}: {
+  children: React.ReactNode;
+  texts: any;
+}) {
   const pathname = usePathname();
   const isPublicRoute = ["sign-in", "sign-up"].includes(pathname.split("/")[0]);
 
@@ -34,10 +40,9 @@ function LayoutProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <main className="flex min-h-screen flex-col justify-between">
-      <Navbar />
-      {/* <p className="text-5xl">halo</p> */}
+      <Navbar texts={texts} />
       {getContent()}
-      <Footer />
+      <Footer texts={texts} />
     </main>
   );
 }

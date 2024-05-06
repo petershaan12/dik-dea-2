@@ -5,26 +5,38 @@ import Error from "@/components/Error";
 import Loader from "@/components/Loader";
 import Ready from "@/components/Ready";
 import { client } from "@/sanity/lib/client";
-import { fetchUsers } from "../(auth)/actions/fetchUsers";
+import { fetchUsers } from "../../(auth)/(routes)/actions/fetchUsers";
 import toast from "react-hot-toast";
 import Datadiri from "@/components/Datadiri";
 
 export const dynamic = "force-dynamic";
 
 async function getData() {
-  const query = `*[_type == "questions"] | order(order asc)
+  const url = window.location.href;
+  let query;
+  if (url.includes("/en/diabetesCheck")) {
+    query = `*[_type == "questions2"] | order(order asc)
+    {
+      question,
+      answers,
+      image
+    }`;
+  } else {
+    query = `*[_type == "questions"] | order(order asc)
   {
     question,
     answers,
     image
   }`;
+  }
   const data = await client.fetch(query);
   return data;
 }
 
-const Page = () => {
+const DiabetesCheck = ({ texts }: any) => {
   const [status, setStatus] = useState("loading");
   const [questions, setQuestions] = useState<any[]>([]);
+  const [questions2, setQuestions2] = useState<any[]>([]);
   const [score, setScore] = useState(0);
   const [userId, setUserId] = useState<string | null | undefined>(null);
 
@@ -61,18 +73,25 @@ const Page = () => {
       {status === "loading" && <Loader />}
       {status === "error" && <Error />}
       {status === "ready" && (
-        <Ready numQuestions={questions.length} handleClick={handleClick} />
+        <Ready
+          texts={texts}
+          numQuestions={questions.length}
+          handleClick={handleClick}
+        />
       )}
-      {status === "form" && <Datadiri handleFormSubmit={handleFormSubmit} />}
+      {status === "form" && (
+        <Datadiri texts={texts} handleFormSubmit={handleFormSubmit} />
+      )}
       {status === "active" && (
         <Quiz
           questions={questions}
           userId={userId ?? "admin"}
           totalScore={score}
+          texts={texts}
         />
       )}
     </section>
   );
 };
 
-export default Page;
+export default DiabetesCheck;

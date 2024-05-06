@@ -1,30 +1,25 @@
 import Loader from "@/components/Loader";
+import { useTranslations } from "next-intl";
 import { Suspense } from "react";
 import { AiFillInstagram, AiFillMail, AiFillYoutube } from "react-icons/ai";
 
 const page = () => {
+  const t = useTranslations("About");
+  const t2 = useTranslations("else");
+  const texts = {
+    loading: t2("wait"),
+  };
   return (
     <section className="w-[80%] container relative flex place-items-center mx-auto bg-logo py-12">
       <Suspense fallback={<Loader />}>
         <div className=" w-full md:w-[80%] ">
           <h1 className=" text-2xl md:text-5xl font-bold text-dark">
-            DIKDEA: Instrumen Deteksi Dini Diabetes Mellitus pada Remaja
+            {t("judul")}
           </h1>
-          <p className=" md:text-xl mt-5">
-            Selamat datang di DIKDEA, sebuah instrumen deteksi dini untuk
-            Diabetes Mellitus pada remaja. Instrumen ini dirancang untuk
-            membantu Anda menilai risiko Anda terkena diabetes mellitus
-            berdasarkan sejumlah variabel yang relevan. Mohon isi dengan jujur
-            dan teliti.
-          </p>
-          <p className="md:text-xl mt-5">
-            Terima kasih atas partisipasi Anda dalam mengisi DIKDEA. Setelah
-            mengisi semua bagian, silakan hitung skor Anda untuk menilai risiko
-            Anda terkena Diabetes Mellitus pada remaja. Jika Anda memiliki
-            pertanyaan lebih lanjut, jangan ragu untuk menghubungi kami.
-          </p>
+          <p className=" md:text-xl mt-5">{t("desc")}</p>
+          <p className="md:text-xl mt-5">{t("desc2")}</p>
           <div className="text-xl md:text-3xl md:flex gap-10 mt-12 ">
-            <p>Kontak kami: </p>
+            <p> {t("kontak")}</p>
             <div className="flex text-4xl gap-10 mt-5">
               <a
                 href="https://www.youtube.com/results?search_query=Diabetes+melitius"

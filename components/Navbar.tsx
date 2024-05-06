@@ -1,22 +1,17 @@
 "use client";
-import { UserButton, useUser, SignOutButton } from "@clerk/nextjs";
+import { useUser, SignOutButton } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import {
-  IoMenuSharp,
-  IoArrowBack,
-  IoLogOutOutline,
-  IoClose,
-} from "react-icons/io5";
+import { IoMenuSharp, IoClose } from "react-icons/io5";
 import NavLogin from "./NavLogin";
 import classNames from "classnames";
+import LocalSwitcher from "./local-switcher";
 
-const Navbar = () => {
+const Navbar = ({ texts }: any) => {
   const { isLoaded, isSignedIn, user } = useUser();
   const [offcanvas, setOffcanvas] = useState(false);
 
-  // In case the user signs out while on the page.
   if (!isLoaded) {
     return "";
   }
@@ -27,8 +22,8 @@ const Navbar = () => {
         <Link href={"/"} className="flex gap-1 items-center">
           <Image
             src="/Logo.png"
-            width={138}
-            height={76}
+            width={150}
+            height={40}
             priority={true}
             alt="DIK DEA logo"
           />
@@ -36,25 +31,26 @@ const Navbar = () => {
 
         <div className="flex items-center gap-3 justify-end">
           <Link href={"/about"} className=" hidden md:block hover:underline">
-            Tentang
+            {texts.tentang}
           </Link>
 
           {isSignedIn ? (
             <>
-              <NavLogin user={user} />
+              <NavLogin user={user} texts={texts} />
             </>
           ) : (
             <>
               <Link href={"/sign-in"}>
                 <span className=" border border-primary px-5 py-2 rounded-md text-primary hidden md:block hover:bg-red-100  duration-200 transition ease-in-out">
-                  Sign In
+                  {texts.masuk}
                 </span>
               </Link>
               <Link href={"/sign-up"}>
                 <span className="bg-primary px-5 py-2 rounded-md text-white mr-5 hidden md:block border border-primary">
-                  Sign up
+                  {texts.daftar}
                 </span>
               </Link>
+              <LocalSwitcher />
             </>
           )}
           <div className="w-9/12 md:hidden text-right text-2xl cursor-pointer">
@@ -80,7 +76,7 @@ const Navbar = () => {
                 onClick={() => setOffcanvas(false)}
                 className="hover:underline"
               >
-                Tentang
+                {texts.tentang}
               </Link>
               {isSignedIn ? (
                 <>
@@ -89,7 +85,7 @@ const Navbar = () => {
                     onClick={() => setOffcanvas(false)}
                   >
                     <span className=" border border-primary px-5 py-2 rounded-md text-primary hover:bg-red-100  duration-200 transition ease-in-out">
-                      CEK DIABETES
+                      {texts.cek}
                     </span>
                   </Link>
                   <Link
@@ -97,7 +93,7 @@ const Navbar = () => {
                     className="hover:underline"
                     onClick={() => setOffcanvas(false)}
                   >
-                    Profil
+                    {texts.profil}
                   </Link>
                   <Link href={"/#"} onClick={() => setOffcanvas(false)}>
                     <SignOutButton>Signout</SignOutButton>
@@ -110,7 +106,7 @@ const Navbar = () => {
                       className=" border border-primary px-5 py-2 rounded-md text-primary"
                       onClick={() => setOffcanvas(false)}
                     >
-                      Sign In
+                      {texts.masuk}
                     </span>
                   </Link>
                   <Link href={"/sign-up"}>
@@ -118,7 +114,7 @@ const Navbar = () => {
                       className="bg-primary px-5 py-2 rounded-md text-white"
                       onClick={() => setOffcanvas(false)}
                     >
-                      Sign up
+                      {texts.daftar}
                     </span>
                   </Link>
                 </>
