@@ -36,7 +36,6 @@ async function getData() {
 const DiabetesCheck = ({ texts }: any) => {
   const [status, setStatus] = useState("loading");
   const [questions, setQuestions] = useState<any[]>([]);
-  const [questions2, setQuestions2] = useState<any[]>([]);
   const [score, setScore] = useState(0);
   const [userId, setUserId] = useState<string | null | undefined>(null);
 
@@ -51,8 +50,7 @@ const DiabetesCheck = ({ texts }: any) => {
         }
         setStatus("ready");
       } catch (error) {
-        console.error("Error fetching data:", error);
-        toast.error("Tes Gagal Dimuat");
+        toast.error(texts.error);
         setStatus("error");
       }
     };

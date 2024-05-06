@@ -75,11 +75,11 @@ const Quiz = ({ questions, userId, totalScore, texts }: QuizProps) => {
           return response.json();
         })
         .then((data) => {
-          toast.success("Tes Selesai Disimpan");
+          toast.success(texts.berhasilSimpan);
           console.log(data);
         })
         .catch((error) => {
-          toast.error("Tes Gagal disimpan");
+          toast.error(texts.errorSimpan);
           console.log(error);
         });
     }
@@ -150,7 +150,7 @@ const Quiz = ({ questions, userId, totalScore, texts }: QuizProps) => {
                   }`}
                 >
                   {activeQuestion === questions.length - 1
-                    ? "Finish"
+                    ? texts.selesai
                     : `${texts.lanjut} →`}
                 </button>
               </div>
@@ -160,7 +160,7 @@ const Quiz = ({ questions, userId, totalScore, texts }: QuizProps) => {
           <>
             {" "}
             <div className="text-center w-[500px] mt-20">
-              <h3 className="text-2xl uppercase mb-10">Results 📈</h3>
+              <h3 className="text-2xl uppercase mb-10">{texts.hasil} 📈</h3>
               <QuizResults
                 score={results.score}
                 title={texts.rata}
@@ -170,7 +170,7 @@ const Quiz = ({ questions, userId, totalScore, texts }: QuizProps) => {
                 onClick={() => window.location.reload()}
                 className="mt-2 mb-6 font-bold uppercase"
               >
-                Ulang Cek Diabetes
+                {texts.ulang}
               </button>
             </div>
           </>

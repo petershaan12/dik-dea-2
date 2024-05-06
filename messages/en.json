@@ -6,6 +6,8 @@
     "pertanyaan": "questions to check your diabetes",
     "saya_siap": "I'm Ready",
     "error": "Error Load the Test",
+    "errorSimpan": "Failed Save The Test",
+    "berhasilSimpan": "Succesfulll Save The Test",
     "isi": "Fill in Your Data First",
     "laki": "Male",
     "perempuan": "Female",
@@ -21,7 +23,7 @@
     "berat": "Weight:",
     "berat2": "Weight (kg)",
     "tinggi": "Height:",
-    "tinggi2": "Height (kg)",
+    "tinggi2": "Height (cm)",
     "bmi": "Your Body Mass Index (BMI) ",
     "kurus": "Underweight",
     "normal": "Normal",
@@ -32,7 +34,10 @@
     "pilih_lingkar": "Select Abdominal Circumference",
     "lanjut": "Next",
     "mundur": "Back",
-    "pertanyaan2": "Question"
+    "selesai": "Finish",
+    "pertanyaan2": "Question",
+    "hasil": "Result",
+    "ulang": "Try Again the Test?"
   },
   "NavbarFooter": {
     "tentang": "About",

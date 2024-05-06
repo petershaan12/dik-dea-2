@@ -5,7 +5,9 @@
     "ada": "ada",
     "pertanyaan": "pertanyaan untuk menguji cek ini",
     "saya_siap": "Saya Sudah Siap",
-    "error": "Ada Error Tes",
+    "error": "Tes Gagal Dimuat",
+    "errorSimpan": "Tes Gagal Disimpan",
+    "berhasilSimpan": "Tes Berhasil Disimpan",
     "isi": "Isi Data dirimu dulu",
     "laki": "Laki-laki",
     "perempuan": "Perempuan",
@@ -32,7 +34,10 @@
     "pilih_lingkar": "Pilih Lingkar Perut",
     "lanjut": "Lanjut",
     "mundur": "Kembali",
-    "pertanyaan2": "Pertanyaan"
+    "selesai": "Selesai",
+    "pertanyaan2": "Question",
+    "hasil": "Hasil",
+    "ulang": "Ulang Cek Diabetes"
   },
   "NavbarFooter": {
     "tentang": "Tentang",
