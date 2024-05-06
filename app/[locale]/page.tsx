@@ -21,7 +21,7 @@ const Home = () => {
   return (
     <>
       <section className="w-full text-center ">
-        <Suspense fallback={<Loader texts={texts} />}>
+        <Suspense fallback={<Loader />}>
           <header className="px-4 md:px-6 mx-auto w-[90%] ">
             <JudulBesar texts={texts} />
           </header>
