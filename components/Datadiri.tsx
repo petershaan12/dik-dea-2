@@ -81,8 +81,6 @@ const Datadiri: React.FC<DataDiriProps> = ({ handleFormSubmit, texts }) => {
 
     const finalScore = totalScore1 + anthropometry;
     const roundedFinalScore = finalScore.toFixed(2);
-
-    console.log(roundedFinalScore);
     handleFormSubmit(parseFloat(roundedFinalScore));
   };
 
