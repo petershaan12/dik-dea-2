@@ -34,10 +34,10 @@ const QuizResults: React.FC<QuizResultsProps> = ({ title, score, texts }) => {
     followUpActions = (
       <>
         <ol>
-        <li>{texts.periksa}</li>
-        <li>{texts.jam}</li>
-        <li>{texts.gula_darah}</li>
-        <li>{texts.urnalisis}</li>
+          <li>{texts.periksa}</li>
+          <li>{texts.jam}</li>
+          <li>{texts.gula_darah}</li>
+          <li>{texts.urnalisis}</li>
         </ol>
       </>
     );

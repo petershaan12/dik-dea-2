@@ -69,18 +69,25 @@ const Datadiri: React.FC<DataDiriProps> = ({ handleFormSubmit, texts }) => {
     if (bmi < 25) {
       weightScore = 0;
     } else if (bmi >= 25 && bmi <= 30) {
-      weightScore = 2;
+      weightScore = 1;
     } else if (bmi >= 30) {
       weightScore = 3;
     }
 
-    const totalScore =
-      parseInt(gender) +
-      parseInt(ethnicity) +
-      weightScore +
-      parseInt(waistCircumference);
-    handleFormSubmit(totalScore);
+    //Melakukan Perhitungan 29-5-2024
+    const totalScore1 = ((parseInt(gender) + parseInt(ethnicity)) / 8) * 5;
+    const anthropometry =
+      ((weightScore + parseInt(waistCircumference)) / 7) * 15;
+
+    const finalScore = totalScore1 + anthropometry;
+    const roundedFinalScore = finalScore.toFixed(2);
+
+    console.log(roundedFinalScore);
+    handleFormSubmit(parseFloat(roundedFinalScore));
   };
+
+  
+
 
   return (
     <div className="flex flex-col ">

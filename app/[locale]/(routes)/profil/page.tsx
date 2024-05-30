@@ -85,7 +85,7 @@ const ProfilePage = ({ texts }: any) => {
         <Loader />
       ) : (
         <>
-          <div className="md:flex flex-col md:px-24 px-0">
+          <div className="md:flex flex-col px-0">
             <div className="py-10 text-2xl mx-auto gap-5">
               <Image
                 src={currentUser?.data?.user.profilePic || "/avatar.jpg"}
@@ -113,7 +113,7 @@ const ProfilePage = ({ texts }: any) => {
             </div>
           </div>
 
-          <div className="mt-7 container px-12 ">
+          <div className="mt-7 container md:px-12 ">
             <h1 className="text-3xl font-bold text-center">{texts.data}</h1>
             <ul>
               {currentUser?.data?.tesResults?.map((result, index) => (

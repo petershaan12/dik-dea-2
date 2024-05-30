@@ -24,16 +24,33 @@ interface QuizProps {
   texts: any;
 }
 
+interface WeightRange {
+  start: number;
+  end: number;
+  weight: number;
+  maxScore: number;
+}
+
 const Quiz = ({ questions, userId, totalScore, texts }: QuizProps) => {
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<Answer | null>(null);
   const [checked, setChecked] = useState(false);
   const [showResults, setShowResults] = useState(false);
+  const [currentScore, setCurrentScore] = useState(0);
+  const [currentScoreHistory, setCurrentScoreHistory] = useState<number[]>([]);
+  const [scoreTotalHistory, setScoreTotalHistory] = useState([totalScore]);
   const [results, setResults] = useState({
     score: totalScore,
   });
 
   const { question, answers, image } = questions[activeQuestion];
+
+  const weightRanges = [
+    { start: 0, end: 6, weight: 25, maxScore: 10 },
+    { start: 7, end: 10, weight: 12, maxScore: 9 },
+    { start: 11, end: 11, weight: 15, maxScore: 5 },
+    { start: 12, end: 18, weight: 28, maxScore: 7 },
+  ];
 
   useEffect(() => {
     setChecked(false);
@@ -45,17 +62,57 @@ const Quiz = ({ questions, userId, totalScore, texts }: QuizProps) => {
     setSelectedAnswer(answer);
   };
 
+  const getWeightAndMaxScore = (index: number): WeightRange => {
+    for (let range of weightRanges) {
+      if (index >= range.start && index <= range.end) {
+        return range;
+      }
+    }
+    return { start: 0, end: 0, weight: 1, maxScore: 1 }; //hanya default saja
+  };
+
+  const calculateRangeScore = (scoreSum: number, range: any) => {
+    return (scoreSum / range.maxScore) * range.weight;
+  };
+
   const nextQuestion = () => {
-    const updatedScore =
-      results.score + (selectedAnswer ? selectedAnswer.value : 0);
-    setResults((prev) => ({
+    const currentRange = getWeightAndMaxScore(activeQuestion);
+    const isEndOfRange = currentRange.end === activeQuestion;
+
+    const newRangeScore =
+      currentScore + (selectedAnswer ? selectedAnswer.value : 0);
+
+    setCurrentScore(newRangeScore);
+    setCurrentScoreHistory((prev) => [
       ...prev,
-      score: updatedScore,
-    }));
+      selectedAnswer ? selectedAnswer.value : 0,
+    ]);
+
+    if (isEndOfRange) {
+      const additionalScore = calculateRangeScore(newRangeScore, currentRange);
+      const newTotalScore = parseFloat(
+        (results.score + additionalScore).toFixed(2)
+      );
+      setResults((prev) => ({
+        ...prev,
+        score: newTotalScore,
+      }));
+      setCurrentScoreHistory((prev) => [...prev, newRangeScore]);
+      setScoreTotalHistory((prev) => [...prev, newTotalScore]);
+      setCurrentScore(0);
+    } else {
+      setScoreTotalHistory((prev) => [...prev, results.score]);
+    }
 
     if (activeQuestion !== questions.length - 1) {
       setActiveQuestion((prev) => prev + 1);
     } else {
+      const additionalScore = calculateRangeScore(newRangeScore, currentRange);
+      const finalScore = results.score + additionalScore;
+      setResults((prev) => ({
+        ...prev,
+        score: finalScore,
+      }));
       setShowResults(true);
       fetch("/api/tesResults", {
         method: "POST",
@@ -64,7 +121,7 @@ const Quiz = ({ questions, userId, totalScore, texts }: QuizProps) => {
         },
         body: JSON.stringify({
           userId: userId,
-          tesScore: updatedScore,
+          tesScore: finalScore,
         }),
       })
         .then((response) => {
@@ -89,6 +146,33 @@ const Quiz = ({ questions, userId, totalScore, texts }: QuizProps) => {
 
   const prevQuestion = () => {
     if (activeQuestion !== 0) {
+      // Hapus Score Total Sebelumnya
+      setResults((prev) => ({
+        ...prev,
+        score: scoreTotalHistory[activeQuestion - 1] || 0,
+      }));
+      const currentRange = getWeightAndMaxScore(activeQuestion);
+      const isEndOfRange = currentRange.start === activeQuestion;
+      const isStart = currentRange.start + 1 === activeQuestion;
+
+      if (isEndOfRange) {
+        setCurrentScore(
+          currentScoreHistory[currentScoreHistory.length - 1] -
+            currentScoreHistory[currentScoreHistory.length - 2]
+        );
+        setCurrentScoreHistory((prev) => prev.slice(0, -1));
+        setCurrentScoreHistory((prev) => prev.slice(0, -1));
+      } else if (isStart) {
+        setCurrentScoreHistory((prev) => prev.slice(0, -1));
+        setCurrentScore(0);
+      } else {
+        setCurrentScoreHistory((prev) => prev.slice(0, -1));
+        setCurrentScore(
+          (prev) => prev - currentScoreHistory[activeQuestion - 1]
+        );
+      }
+
+      //Undo Question
       setActiveQuestion((prev) => prev - 1);
     }
   };
@@ -125,7 +209,7 @@ const Quiz = ({ questions, userId, totalScore, texts }: QuizProps) => {
                     key={idx}
                     onClick={() => onAnswerSelected(answer)}
                     className={`cursor-pointer mb-5 py-3 border w-full border-black rounded-md hover:bg-primary hover:text-white px-3 ${
-                      selectedAnswer === answer && "bg-primary text-white"
+                      selectedAnswer === answer ? "bg-primary text-white" : ""
                     }`}
                   >
                     <span>{answer.option}</span>
