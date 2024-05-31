@@ -29,6 +29,7 @@ function LayoutProvider({
       if (response && response.error) throw new Error(response.error.message);
     } catch (error) {
       console.log(error);
+      console.log("belumlogin");
     } finally {
       return;
     }
