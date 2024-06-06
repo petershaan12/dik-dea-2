@@ -39,6 +39,11 @@
     "hasil": "Result",
     "ulang": "Try Again the Test?"
   },
+  "NotFoundPage": {
+    "not-found": "😭 We could not find the page you were looking for",
+    "go-back": "Go back to the",
+    "dashboard": " Dashboard"
+  },
   "NavbarFooter": {
     "tentang": "About",
     "masuk": "Sign In",

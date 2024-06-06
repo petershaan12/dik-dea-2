@@ -39,6 +39,11 @@
     "hasil": "Hasil",
     "ulang": "Ulang Cek Diabetes"
   },
+  "NotFoundPage": {
+    "not-found": "😭 Maaf kami tidak dapat menemukan halaman yang Anda cari",
+    "go-back": "Kembali ke",
+    "dashboard": " Halaman Utama"
+  },
   "NavbarFooter": {
     "tentang": "Tentang",
     "masuk": "Masuk",

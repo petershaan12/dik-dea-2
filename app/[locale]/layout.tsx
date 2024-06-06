@@ -6,6 +6,7 @@ import LayoutProvider from "@/providers/LayoutProvider";
 import { Toaster } from "react-hot-toast";
 import classNames from "classnames";
 import { NextIntlClientProvider, useTranslations } from "next-intl";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 const epilogue = Epilogue({ subsets: ["latin"] });
 
@@ -35,6 +36,7 @@ export default function LocaleLayout({
     <NextIntlClientProvider locale={locale}>
       <ClerkProvider>
         <html lang={locale}>
+          <GoogleTagManager gtmId="G-HXCW41B2Z9" />
           <body
             className={classNames("bg-secondary", epilogue.className)}
             suppressHydrationWarning={true}

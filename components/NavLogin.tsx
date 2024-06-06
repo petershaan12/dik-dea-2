@@ -2,7 +2,6 @@
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import classNames from "classnames";
-import LocalSwitcher from "./local-switcher";
 
 const NavLogin = ({ user, dir, texts }: any) => {
   const dirs: any = {
@@ -25,7 +24,6 @@ const NavLogin = ({ user, dir, texts }: any) => {
       <div className="hidden md:block">
         <UserButton afterSignOutUrl="/" />
       </div>
-      <LocalSwitcher />
     </div>
   );
 };
