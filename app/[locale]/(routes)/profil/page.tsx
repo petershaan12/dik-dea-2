@@ -36,7 +36,7 @@ const ProfilePage = ({ texts }: any) => {
         setCurrentUser(userData);
         const tesResults = userData?.data?.tesResults || [];
         const totalScores = tesResults.reduce(
-          (acc, result) => acc + (result.tesScore || 0),
+          (acc: number, result: { tesScore: number }) => acc + (result.tesScore || 0),
           0
         );
         const averageScore = totalScores / tesResults.length || 0;
