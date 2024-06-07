@@ -22,7 +22,7 @@ const NavLogin = ({ user, dir, texts }: any) => {
         </span>
       </Link>
       <div className="hidden md:block">
-        <UserButton afterSignOutUrl="/" />
+        <UserButton afterSignOutUrl="/id" />
       </div>
     </div>
   );
