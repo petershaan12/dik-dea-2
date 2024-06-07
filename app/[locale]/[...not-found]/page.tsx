@@ -1,14 +1,14 @@
 import React from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { Metadata } from "next";
 
-export default function notFound({
-  children,
-  params: { locale },
-}: {
-  children: React.ReactNode;
-  params: { locale: string };
-}) {
+export const metadata: Metadata = {
+  title: "Not Found",
+  description: "Halaman Tidak Ditemukan",
+};
+
+export default function notFound() {
   const t = useTranslations("NotFoundPage");
   return (
     <section className=" mx-auto w-[80%]  flex items-center text-left bg-logo-transparent lg:bg-[length:300px_300px] bg-[length:100px_100px] bg-no-repeat bg-[bottom_right_1rem]">
